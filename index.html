@@ -85,8 +85,7 @@ if(mode==="mystery"){e.winner.textContent="✦";e.meta.textContent="Abriendo el 
 const names=people.map(p=>p.name),t=setInterval(()=>{e.winner.textContent=names[Math.floor(Math.random()*names.length)];e.meta.textContent="Mezclando participantes..."},90);setTimeout(()=>{clearInterval(t);showWinner(final)},dur)}
 e.add.addEventListener("click",()=>{addPerson(e.name.value,e.tickets.value);e.name.value="";e.tickets.value=1;e.name.focus()});
 e.name.addEventListener("keydown",x=>{if(x.key==="Enter")e.add.click()});
-e.bulkAdd.addEventListener("click",()=>{e.bulk.value.split(/?
-/).forEach(line=>{const m=line.match(/^(.*?)(?:[,;|	]\s*(\d+))?$/);if(m)addPerson(m[1],m[2]||1)});e.bulk.value=""});
+e.bulkAdd.addEventListener("click",()=>{e.bulk.value.split(/\r?\n/).forEach(line=>{const m=line.match(/^(.*?)(?:[,;|	]\s*(\d+))?$/);if(m)addPerson(m[1],m[2]||1)});e.bulk.value=""});
 e.clear.addEventListener("click",()=>{if(!confirm("¿Vaciar participantes e historial?"))return;people.splice(0);winners.splice(0);e.winner.textContent="Listo para sortear";e.meta.textContent="Agrega participantes para comenzar";render()});
 e.list.addEventListener("click",x=>{const b=x.target.closest("[data-r]");if(!b)return;const i=people.findIndex(p=>p.id===b.dataset.r);if(i>=0)people.splice(i,1);render()});
 e.list.addEventListener("change",x=>{const i=x.target.closest("[data-t]");if(!i)return;const p=people.find(p=>p.id===i.dataset.t);if(p)p.tickets=Math.max(1,Math.floor(Number(i.value)||1));render()});
