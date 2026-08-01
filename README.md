@@ -24,9 +24,9 @@ Los SVG de quesitos y la decoración están incluidos dentro del propio HTML, as
 Usa una persona por línea:
 
 ```text
-@ana, 4
+@kim, 4
 @fer, 3
-@im, 6
+@papirrin, 6
 ```
 
 Si un nombre se repite, sus boletos se suman.
