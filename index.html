@@ -500,14 +500,22 @@ textarea{min-height:118px;resize:vertical}
 
     winners.unshift(person.name);
 
-    if(e.removeWinner.checked){
-      for(var i=0;i<people.length;i++){
+if(e.removeWinner.checked){
+    for(var i=0;i<people.length;i++){
         if(people[i].id === person.id){
-          people.splice(i,1);
-          break;
+
+            // Restar solamente 1 boleto
+            people[i].tickets--;
+
+            // Si ya no le quedan boletos, eliminarlo de la lista
+            if(people[i].tickets <= 0){
+                people.splice(i,1);
+            }
+
+            break;
         }
-      }
     }
+}
 
     drawing = false;
     e.draw.disabled = false;
