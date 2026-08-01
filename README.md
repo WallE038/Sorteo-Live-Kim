@@ -1,3 +1,4 @@
+[README.md](https://github.com/user-attachments/files/30609920/README.md)
 # Sorteo Live
 
 Herramienta estática para sorteos en TikTok LIVE sin ruleta.
