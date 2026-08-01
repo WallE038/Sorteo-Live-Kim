@@ -1,25 +1,32 @@
-[README.md](https://github.com/user-attachments/files/30609920/README.md)
-# Sorteo Live
+[README.md](https://github.com/user-attachments/files/30610113/README.md)
+# Sorteo Live — KimQSTO
 
-Herramienta estática para sorteos en TikTok LIVE sin ruleta.
+Herramienta web estática para administrar participantes con múltiples boletos.
 
-## Incluye
-- Participantes con múltiples boletos.
-- Selección ponderada.
-- Carga rápida por lista.
-- Modos instantáneo, cuenta regresiva, nombres cambiando y sobre sorpresa.
-- Historial.
-- Opción de retirar al ganador.
-- Modo presentación.
+## Archivos
 
-## GitHub Pages
-1. Sube `index.html` y `README.md` a la raíz del repositorio.
-2. Ve a Settings > Pages.
-3. Deploy from a branch.
-4. Selecciona `main` y `/(root)`.
-5. Guarda.
+- `index.html`
+- `README.md`
 
-## Formato de carga rápida
+Los SVG de quesitos y la decoración están incluidos dentro del propio HTML, así que no hace falta una carpeta de imágenes.
+
+## Subir a GitHub Pages
+
+1. Crea un repositorio público.
+2. Sube `index.html` y `README.md` a la raíz.
+3. Ve a `Settings > Pages`.
+4. En `Source`, selecciona `Deploy from a branch`.
+5. Selecciona `main` y `/(root)`.
+6. Guarda y espera a que GitHub publique la URL.
+
+## Carga rápida
+
+Usa una persona por línea:
+
+```text
 @ana, 4
-@luis, 1
-@kim, 8
+@fer, 3
+@im, 6
+```
+
+Si un nombre se repite, sus boletos se suman.
