@@ -3,69 +3,253 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sorteo Live</title>
+<title>Sorteo Live — KimQSTO</title>
 <style>
-:root{--bg:#09090f;--panel:#14101d;--panel2:#1d1728;--purple:#9d4edd;--purple2:#c77dff;--text:#fff;--muted:#b8aec8;--border:rgba(199,125,255,.35);--danger:#ff738d}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:radial-gradient(circle at top left,rgba(157,78,221,.18),transparent 35%),var(--bg);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif}body{padding:22px}
-button,input,textarea,select{font:inherit}.app{max-width:1160px;margin:auto}.top{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:18px}
-h1{margin:0 0 5px;font-size:42px}.sub{margin:0;color:var(--muted)}.badge{padding:8px 12px;border-radius:999px;background:rgba(157,78,221,.14);border:1px solid var(--border);color:var(--purple2);font-weight:800}
-.grid{display:grid;grid-template-columns:1fr 1.1fr;gap:18px}.card{background:rgba(20,16,29,.96);border:1px solid var(--border);border-radius:22px;padding:19px;box-shadow:0 18px 50px rgba(0,0,0,.28)}
-h2{margin:0 0 14px;font-size:20px}.row{display:flex;gap:10px;align-items:end}.field{display:flex;flex-direction:column;gap:7px;flex:1}label{font-size:13px;color:var(--muted);font-weight:700}
-input,textarea,select{width:100%;border:1px solid var(--border);background:#0d0b13;color:#fff;border-radius:13px;padding:11px 13px;outline:none}
-textarea{min-height:105px;resize:vertical}.btn{border:0;border-radius:13px;padding:11px 15px;font-weight:800;cursor:pointer}.primary{background:linear-gradient(135deg,var(--purple),#6d28d9);color:#fff}.secondary{background:#2a2238;color:#fff;border:1px solid var(--border)}.danger{background:rgba(255,115,141,.12);color:#ff9aad;border:1px solid rgba(255,115,141,.3)}.small{padding:7px 9px;font-size:12px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:15px 0}.stat{background:#0d0b13;border:1px solid rgba(255,255,255,.06);border-radius:15px;padding:11px}.stat strong{display:block;font-size:23px}.stat span{font-size:12px;color:var(--muted)}
-.list{display:flex;flex-direction:column;gap:8px;max-height:330px;overflow:auto}.person{display:grid;grid-template-columns:1fr auto auto;gap:9px;align-items:center;background:#0d0b13;border:1px solid rgba(255,255,255,.06);border-radius:13px;padding:9px 11px}.name{font-weight:800}.tickets{font-size:12px;color:var(--purple2);font-weight:800}.empty{color:var(--muted);text-align:center;padding:28px}
-.draw{min-height:430px;display:flex;flex-direction:column;justify-content:space-between}.controls{display:grid;grid-template-columns:1fr 145px;gap:10px}
-.result{min-height:230px;display:grid;place-items:center;text-align:center;border:1px dashed var(--border);border-radius:20px;margin:16px 0;background:rgba(9,9,15,.55);padding:18px}
-.result-label{color:var(--muted);font-size:12px;letter-spacing:.18em;text-transform:uppercase}.winner{font-size:clamp(36px,7vw,70px);font-weight:1000;margin:8px 0;text-shadow:0 0 26px rgba(157,78,221,.55)}.meta{color:var(--purple2);font-weight:800}
-.actions{display:grid;grid-template-columns:1fr auto;gap:10px}.drawbtn{font-size:19px;padding:15px}.note{font-size:12px;color:var(--muted);line-height:1.5}.history{display:flex;gap:8px;flex-wrap:wrap}.chip{background:#0d0b13;border:1px solid rgba(255,255,255,.07);border-radius:999px;padding:7px 11px;font-size:12px}
-.pulse{animation:pulse .55s ease-in-out infinite alternate}.reveal{animation:reveal .5s cubic-bezier(.2,.9,.3,1.15)}@keyframes pulse{from{transform:scale(.985);opacity:.7}to{transform:scale(1.015);opacity:1}}@keyframes reveal{from{transform:scale(.72);opacity:0;filter:blur(7px)}to{transform:scale(1);opacity:1;filter:blur(0)}}
-.presentation .left,.presentation .sub,.presentation .badge,.presentation .controls,.presentation .history-wrap{display:none}.presentation .grid{grid-template-columns:1fr}.presentation .app{max-width:940px}.presentation .draw{min-height:78vh}.presentation .result{min-height:54vh}
-@media(max-width:850px){body{padding:13px}.grid{grid-template-columns:1fr}.top{flex-direction:column}.row{flex-direction:column;align-items:stretch}.controls,.actions{grid-template-columns:1fr}}
+:root{
+  --bg:#09070d;
+  --panel:#fff4f8;
+  --panel-2:#ffe8f1;
+  --pink:#ff4f9a;
+  --pink-2:#ff8fbd;
+  --pink-3:#ffd2e4;
+  --ink:#25101d;
+  --muted:#7c5267;
+  --line:#f3a6c7;
+  --white:#fff;
+  --danger:#cf2e69;
+}
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  min-height:100%;
+  color:var(--ink);
+  font-family:Inter,"Segoe UI",Arial,sans-serif;
+  background:
+    radial-gradient(circle at 12% 12%,rgba(255,79,154,.14),transparent 24%),
+    radial-gradient(circle at 88% 18%,rgba(255,143,189,.11),transparent 22%),
+    var(--bg);
+}
+body{padding:26px;overflow-x:hidden}
+button,input,textarea,select{font:inherit}
+.app{max-width:1280px;margin:auto;position:relative;z-index:2}
+.bg-doodles{
+  position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0;opacity:.72
+}
+.doodle{position:absolute;color:var(--pink);filter:drop-shadow(0 0 8px rgba(255,79,154,.25))}
+.doodle svg{width:100%;height:100%}
+.d1{width:96px;height:96px;left:2%;top:2%;transform:rotate(-14deg)}
+.d2{width:120px;height:120px;right:2%;top:7%;transform:rotate(15deg)}
+.d3{width:78px;height:78px;left:1%;bottom:10%;transform:rotate(12deg)}
+.d4{width:96px;height:96px;right:3%;bottom:6%;transform:rotate(-10deg)}
+.d5{width:70px;height:70px;left:48%;top:1%;transform:rotate(7deg)}
+.spark{position:absolute;color:var(--pink-2);font-size:28px;text-shadow:0 0 14px rgba(255,79,154,.5)}
+.s1{left:17%;top:6%}.s2{right:20%;top:5%}.s3{left:8%;bottom:7%}.s4{right:11%;bottom:14%}.s5{left:50%;bottom:2%}
+.top{
+  display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:18px
+}
+.title-wrap{display:flex;gap:14px;align-items:center}
+.logo-cheese{width:76px;height:76px;flex:0 0 auto}
+h1{margin:0;font-size:clamp(36px,5vw,64px);line-height:.95;color:#fff;text-shadow:0 0 16px rgba(255,79,154,.45)}
+h1 span{color:var(--pink-2)}
+.sub{margin:9px 0 0;color:#f7d6e4;font-size:17px}
+.badge{
+  color:#fff;background:rgba(255,79,154,.12);border:1px solid rgba(255,143,189,.55);
+  padding:10px 15px;border-radius:999px;font-weight:800;white-space:nowrap
+}
+.grid{display:grid;grid-template-columns:1fr 1.06fr;gap:20px}
+.card{
+  background:linear-gradient(180deg,var(--panel),var(--panel-2));
+  border:2px solid var(--pink);
+  border-radius:24px;padding:20px;
+  box-shadow:0 18px 50px rgba(0,0,0,.3),0 0 24px rgba(255,79,154,.1)
+}
+.card h2{margin:0 0 15px;font-size:22px;display:flex;align-items:center;gap:9px}
+.icon{color:var(--pink)}
+.row{display:flex;gap:11px;align-items:end}
+.field{display:flex;flex-direction:column;gap:7px;flex:1}
+label{font-size:13px;color:var(--muted);font-weight:800}
+input,textarea,select{
+  width:100%;border:1.5px solid var(--line);background:rgba(255,255,255,.72);color:var(--ink);
+  border-radius:14px;padding:12px 14px;outline:none
+}
+input:focus,textarea:focus,select:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(255,79,154,.12)}
+textarea{min-height:118px;resize:vertical}
+.btn{
+  border:0;border-radius:14px;padding:12px 16px;font-weight:900;cursor:pointer;transition:.18s transform,.18s opacity
+}
+.btn:hover{transform:translateY(-1px)}
+.primary{background:linear-gradient(135deg,var(--pink),#e53a85);color:white;box-shadow:0 8px 18px rgba(229,58,133,.22)}
+.secondary{background:#fff;color:#a32159;border:1.5px solid var(--line)}
+.danger{background:#fff0f5;color:var(--danger);border:1.5px solid #f3a6c7}
+.small{padding:8px 10px;font-size:12px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}
+.stat{background:#fff;border:1.5px solid var(--pink-3);border-radius:16px;padding:13px}
+.stat strong{display:block;font-size:26px}
+.stat span{font-size:12px;color:var(--muted)}
+.list{display:flex;flex-direction:column;gap:8px;max-height:330px;overflow:auto}
+.person{
+  display:grid;grid-template-columns:1fr auto auto;gap:9px;align-items:center;background:#fff;
+  border:1.5px solid var(--pink-3);border-radius:14px;padding:10px 12px
+}
+.name{font-weight:900}.tickets{font-size:12px;color:#c43070;font-weight:800}
+.empty{display:flex;align-items:center;gap:14px;color:var(--muted);padding:28px 12px}
+.empty-cheese{width:68px;height:68px;flex:0 0 auto}
+.draw{min-height:470px;display:flex;flex-direction:column;justify-content:space-between}
+.controls{display:grid;grid-template-columns:1fr 150px;gap:10px}
+.result{
+  min-height:250px;display:grid;place-items:center;text-align:center;border:1.5px dashed var(--pink);
+  border-radius:22px;margin:16px 0;background:
+    radial-gradient(circle at center,rgba(255,79,154,.13),transparent 52%),
+    #0d0911;padding:20px;color:white
+}
+.result-label{color:var(--pink-2);font-size:13px;letter-spacing:.2em;text-transform:uppercase}
+.winner{font-size:clamp(40px,6vw,74px);font-weight:1000;margin:10px 0;text-shadow:0 0 22px rgba(255,79,154,.45)}
+.meta{color:var(--pink-2);font-weight:800}
+.actions{display:grid;grid-template-columns:1fr auto;gap:10px}
+.drawbtn{font-size:18px;padding:15px}
+.note{font-size:12px;color:var(--muted);line-height:1.5}
+.history{display:flex;gap:8px;flex-wrap:wrap}
+.chip{background:#fff;border:1.5px solid var(--pink-3);border-radius:999px;padding:8px 12px;font-size:12px}
+.footer{text-align:center;color:#ffb2d0;font-weight:1000;font-size:28px;margin-top:18px;text-shadow:0 0 14px rgba(255,79,154,.4)}
+.presentation .left,.presentation .sub,.presentation .badge,.presentation .controls,.presentation .history-wrap,.presentation .footer{display:none}
+.presentation .grid{grid-template-columns:1fr}
+.presentation .app{max-width:940px}
+.presentation .draw{min-height:80vh}
+.presentation .result{min-height:56vh}
+.reveal{animation:reveal .5s cubic-bezier(.2,.9,.3,1.15)}
+.pulse{animation:pulse .55s ease-in-out infinite alternate}
+@keyframes reveal{from{transform:scale(.75);opacity:0;filter:blur(7px)}to{transform:scale(1);opacity:1;filter:blur(0)}}
+@keyframes pulse{from{transform:scale(.985);opacity:.72}to{transform:scale(1.015);opacity:1}}
+@media(max-width:900px){
+  body{padding:14px}.grid{grid-template-columns:1fr}.top{flex-direction:column}.row{flex-direction:column;align-items:stretch}.controls,.actions{grid-template-columns:1fr}.badge{align-self:flex-start}
+}
 </style>
 </head>
 <body>
+
+<div class="bg-doodles" aria-hidden="true">
+  <div class="doodle d1"><svg viewBox="0 0 100 100"><path d="M12 70 32 20l56 16-18 48z" fill="#ffcd6a" stroke="currentColor" stroke-width="4"/><circle cx="43" cy="38" r="7" fill="#f59e42"/><circle cx="65" cy="56" r="8" fill="#f59e42"/><circle cx="32" cy="65" r="6" fill="#f59e42"/></svg></div>
+  <div class="doodle d2"><svg viewBox="0 0 100 100"><path d="M12 70 32 20l56 16-18 48z" fill="#ffcd6a" stroke="currentColor" stroke-width="4"/><circle cx="43" cy="38" r="7" fill="#f59e42"/><circle cx="65" cy="56" r="8" fill="#f59e42"/><circle cx="32" cy="65" r="6" fill="#f59e42"/></svg></div>
+  <div class="doodle d3"><svg viewBox="0 0 100 100"><path d="M12 70 32 20l56 16-18 48z" fill="#ffcd6a" stroke="currentColor" stroke-width="4"/><circle cx="43" cy="38" r="7" fill="#f59e42"/><circle cx="65" cy="56" r="8" fill="#f59e42"/><circle cx="32" cy="65" r="6" fill="#f59e42"/></svg></div>
+  <div class="doodle d4"><svg viewBox="0 0 100 100"><path d="M12 70 32 20l56 16-18 48z" fill="#ffcd6a" stroke="currentColor" stroke-width="4"/><circle cx="43" cy="38" r="7" fill="#f59e42"/><circle cx="65" cy="56" r="8" fill="#f59e42"/><circle cx="32" cy="65" r="6" fill="#f59e42"/></svg></div>
+  <div class="doodle d5"><svg viewBox="0 0 100 100"><path d="M12 70 32 20l56 16-18 48z" fill="#ffcd6a" stroke="currentColor" stroke-width="4"/><circle cx="43" cy="38" r="7" fill="#f59e42"/><circle cx="65" cy="56" r="8" fill="#f59e42"/><circle cx="32" cy="65" r="6" fill="#f59e42"/></svg></div>
+  <div class="spark s1">✦</div><div class="spark s2">♡</div><div class="spark s3">✦</div><div class="spark s4">♡</div><div class="spark s5">✦</div>
+</div>
+
 <div class="app">
-<header class="top"><div><h1>Sorteo Live</h1><p class="sub">Boletos ponderados, sin ruleta y listo para TikTok LIVE.</p></div><div class="badge">Negro + morado</div></header>
+<header class="top">
+  <div class="title-wrap">
+    <svg class="logo-cheese" viewBox="0 0 100 100" aria-hidden="true">
+      <path d="M14 72 34 22l52 16-18 46z" fill="#ffcf70" stroke="#ff4f9a" stroke-width="4"/>
+      <circle cx="44" cy="40" r="7" fill="#f09b3d"/><circle cx="66" cy="58" r="8" fill="#f09b3d"/><circle cx="34" cy="66" r="6" fill="#f09b3d"/>
+      <path d="M28 20c8-12 18-7 22 1 4-8 14-13 22-1-6 8-14 10-22 6-8 4-16 2-22-6Z" fill="#ff77ad" stroke="#ff4f9a" stroke-width="3"/>
+    </svg>
+    <div>
+      <h1>Sorteo <span>Live</span></h1>
+      <p class="sub">Boletos ponderados y listo para TikTok LIVE.</p>
+    </div>
+  </div>
+  <div class="badge">🎀 Rosa + queso</div>
+</header>
+
 <main class="grid">
 <section class="left">
-<div class="card">
-<h2>Agregar participante</h2>
-<div class="row">
-<div class="field"><label for="name">Nombre o usuario</label><input id="name" placeholder="@usuario"></div>
-<div class="field" style="max-width:125px"><label for="tickets">Boletos</label><input id="tickets" type="number" min="1" value="1"></div>
-<button id="add" class="btn primary">Agregar</button>
-</div>
-<div class="stats">
-<div class="stat"><strong id="peopleCount">0</strong><span>Personas</span></div>
-<div class="stat"><strong id="ticketCount">0</strong><span>Boletos</span></div>
-<div class="stat"><strong id="winnerCount">0</strong><span>Ganadores</span></div>
-</div>
-<div class="field"><label for="bulk">Carga rápida — una persona por línea</label><textarea id="bulk" placeholder="@ana, 4&#10;@luis, 1&#10;@kim, 8"></textarea></div>
-<div class="row" style="margin-top:10px"><button id="bulkAdd" class="btn secondary">Agregar lista</button><button id="clear" class="btn danger">Vaciar todo</button></div>
-<p class="note">Formato: <strong>nombre, boletos</strong>. Si una persona se repite, sus boletos se suman.</p>
-</div>
-<div class="card" style="margin-top:18px"><h2>Participantes</h2><div id="list" class="list"><div class="empty">Todavía no hay participantes.</div></div></div>
+  <div class="card">
+    <h2><span class="icon">👥</span> Agregar participante</h2>
+    <div class="row">
+      <div class="field"><label for="name">Nombre o usuario</label><input id="name" placeholder="@usuario"></div>
+      <div class="field" style="max-width:130px"><label for="tickets">Boletos</label><input id="tickets" type="number" min="1" value="1"></div>
+      <button id="add" class="btn primary">Agregar</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><strong id="peopleCount">0</strong><span>Personas</span></div>
+      <div class="stat"><strong id="ticketCount">0</strong><span>Boletos totales</span></div>
+      <div class="stat"><strong id="winnerCount">0</strong><span>Ganadores</span></div>
+    </div>
+
+    <div class="field">
+      <label for="bulk">Carga rápida — una persona por línea</label>
+      <textarea id="bulk" placeholder="@ana, 4&#10;@fer, 3&#10;@im, 6"></textarea>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <button id="bulkAdd" class="btn primary">Agregar lista</button>
+      <button id="clear" class="btn danger">Vaciar todo</button>
+    </div>
+    <p class="note">Formato: <strong>nombre, boletos</strong>. Si una persona se repite, sus boletos se suman.</p>
+  </div>
+
+  <div class="card" style="margin-top:18px">
+    <h2><span class="icon">👥</span> Participantes</h2>
+    <div id="list" class="list">
+      <div class="empty">
+        <svg class="empty-cheese" viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M14 72 34 22l52 16-18 46z" fill="#ffcf70" stroke="#ff4f9a" stroke-width="4"/>
+          <circle cx="44" cy="40" r="7" fill="#f09b3d"/><circle cx="66" cy="58" r="8" fill="#f09b3d"/><circle cx="34" cy="66" r="6" fill="#f09b3d"/>
+        </svg>
+        <div><strong>Todavía no hay participantes.</strong><br><span>Agrega usuarios para comenzar.</span></div>
+      </div>
+    </div>
+  </div>
 </section>
+
 <section class="card draw">
-<div>
-<h2>Elegir ganador</h2>
-<div class="controls">
-<div class="field"><label for="mode">Modo</label><select id="mode"><option value="instant">Instantáneo</option><option value="countdown">Cuenta regresiva</option><option value="shuffle">Nombres cambiando</option><option value="mystery">Sobre sorpresa</option></select></div>
-<div class="field"><label for="seconds">Duración</label><select id="seconds"><option value="2">2 segundos</option><option value="3" selected>3 segundos</option><option value="5">5 segundos</option><option value="8">8 segundos</option></select></div>
-</div>
-<div id="result" class="result"><div><div class="result-label">Resultado</div><div id="winner" class="winner">Listo para sortear</div><div id="meta" class="meta">Agrega participantes para comenzar</div></div></div>
-</div>
-<div>
-<div class="actions"><button id="draw" class="btn primary drawbtn">Elegir al azar</button><button id="present" class="btn secondary">Modo presentación</button></div>
-<label class="note" style="display:flex;gap:8px;align-items:center;margin-top:10px"><input id="removeWinner" type="checkbox" style="width:auto">Retirar al ganador para que no vuelva a salir.</label>
-<div class="history-wrap"><h2 style="font-size:16px;margin-top:18px">Historial</h2><div id="history" class="history"><span class="note">Aún no hay resultados.</span></div></div>
-</div>
+  <div>
+    <h2><span class="icon">♛</span> Elegir ganador</h2>
+    <div class="controls">
+      <div class="field">
+        <label for="mode">Modo</label>
+        <select id="mode">
+          <option value="instant">Instantáneo</option>
+          <option value="countdown">Cuenta regresiva</option>
+          <option value="shuffle">Nombres cambiando</option>
+          <option value="mystery">Sobre sorpresa</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="seconds">Duración</label>
+        <select id="seconds">
+          <option value="2">2 segundos</option>
+          <option value="3" selected>3 segundos</option>
+          <option value="5">5 segundos</option>
+          <option value="8">8 segundos</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="result" class="result">
+      <div>
+        <div class="result-label">♡ Resultado ♡</div>
+        <div id="winner" class="winner">Listo para sortear</div>
+        <div id="meta" class="meta">Agrega participantes para comenzar</div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="actions">
+      <button id="draw" class="btn primary drawbtn">Elegir ganador</button>
+      <button id="present" class="btn secondary">Modo presentación</button>
+    </div>
+
+    <label class="note" style="display:flex;gap:8px;align-items:center;margin-top:10px">
+      <input id="removeWinner" type="checkbox" style="width:auto">
+      Retirar al ganador para que no vuelva a salir.
+    </label>
+
+    <div class="history-wrap">
+      <h2 style="font-size:17px;margin-top:18px"><span class="icon">◷</span> Historial</h2>
+      <div id="history" class="history"><span class="note">Aún no hay resultados.</span></div>
+    </div>
+  </div>
 </section>
 </main>
+
+<div class="footer">♡ KIMQSTO ♡</div>
 </div>
+
 <script>
-(function () {
+(function(){
   "use strict";
 
   var people = [];
@@ -73,7 +257,7 @@ textarea{min-height:105px;resize:vertical}.btn{border:0;border-radius:13px;paddi
   var drawing = false;
   var nextId = 1;
 
-  function byId(id) { return document.getElementById(id); }
+  function byId(id){ return document.getElementById(id); }
 
   var e = {
     name: byId("name"),
@@ -97,98 +281,97 @@ textarea{min-height:105px;resize:vertical}.btn{border:0;border-radius:13px;paddi
     present: byId("present")
   };
 
-  function escapeHtml(value) {
-    return String(value).replace(/[&<>"']/g, function (char) {
-      return {
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#039;"
-      }[char];
+  function escapeHtml(value){
+    return String(value).replace(/[&<>"']/g,function(char){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[char];
     });
   }
 
-  function cleanName(value) {
-    return String(value || "").trim().replace(/\s+/g, " ");
+  function cleanName(value){
+    return String(value || "").trim().replace(/\s+/g," ");
   }
 
-  function totalTickets() {
+  function totalTickets(){
     var total = 0;
-    for (var i = 0; i < people.length; i++) total += people[i].tickets;
+    for(var i=0;i<people.length;i++) total += people[i].tickets;
     return total;
   }
 
-  function addPerson(name, tickets) {
+  function addPerson(name,tickets){
     name = cleanName(name);
-    tickets = Math.max(1, parseInt(tickets, 10) || 1);
-    if (!name) return;
+    tickets = Math.max(1,parseInt(tickets,10) || 1);
+    if(!name) return;
 
     var existing = null;
-    for (var i = 0; i < people.length; i++) {
-      if (people[i].name.toLowerCase() === name.toLowerCase()) {
+    for(var i=0;i<people.length;i++){
+      if(people[i].name.toLowerCase() === name.toLowerCase()){
         existing = people[i];
         break;
       }
     }
 
-    if (existing) {
-      existing.tickets += tickets;
-    } else {
-      people.push({ id: String(nextId++), name: name, tickets: tickets });
-    }
+    if(existing) existing.tickets += tickets;
+    else people.push({id:String(nextId++),name:name,tickets:tickets});
+
     render();
   }
 
-  function weightedWinner() {
+  function weightedWinner(){
     var total = totalTickets();
-    if (!total) return null;
+    if(!total) return null;
 
     var target = Math.random() * total;
-    for (var i = 0; i < people.length; i++) {
+    for(var i=0;i<people.length;i++){
       target -= people[i].tickets;
-      if (target < 0) return people[i];
+      if(target < 0) return people[i];
     }
     return people[people.length - 1];
   }
 
-  function render() {
+  function render(){
     e.peopleCount.textContent = String(people.length);
     e.ticketCount.textContent = String(totalTickets());
     e.winnerCount.textContent = String(winners.length);
 
-    if (!people.length) {
-      e.list.innerHTML = '<div class="empty">Todavía no hay participantes.</div>';
-    } else {
+    if(!people.length){
+      e.list.innerHTML =
+        '<div class="empty">'+
+          '<svg class="empty-cheese" viewBox="0 0 100 100" aria-hidden="true">'+
+            '<path d="M14 72 34 22l52 16-18 46z" fill="#ffcf70" stroke="#ff4f9a" stroke-width="4"/>'+
+            '<circle cx="44" cy="40" r="7" fill="#f09b3d"/>'+
+            '<circle cx="66" cy="58" r="8" fill="#f09b3d"/>'+
+            '<circle cx="34" cy="66" r="6" fill="#f09b3d"/>'+
+          '</svg>'+
+          '<div><strong>Todavía no hay participantes.</strong><br><span>Agrega usuarios para comenzar.</span></div>'+
+        '</div>';
+    }else{
       var html = "";
-      for (var i = 0; i < people.length; i++) {
+      for(var i=0;i<people.length;i++){
         var p = people[i];
         html +=
-          '<div class="person">' +
-            '<div>' +
-              '<div class="name">' + escapeHtml(p.name) + '</div>' +
-              '<div class="tickets">' + p.tickets + ' boleto' + (p.tickets === 1 ? '' : 's') + '</div>' +
-            '</div>' +
-            '<input data-ticket-id="' + p.id + '" type="number" min="1" value="' + p.tickets + '" style="width:76px;padding:7px 8px">' +
-            '<button data-remove-id="' + p.id + '" class="btn danger small">Quitar</button>' +
+          '<div class="person">'+
+            '<div><div class="name">'+escapeHtml(p.name)+'</div>'+
+            '<div class="tickets">'+p.tickets+' boleto'+(p.tickets===1?"":"s")+'</div></div>'+
+            '<input data-ticket-id="'+p.id+'" type="number" min="1" value="'+p.tickets+'" style="width:78px;padding:8px 9px">'+
+            '<button data-remove-id="'+p.id+'" class="btn danger small">Quitar</button>'+
           '</div>';
       }
       e.list.innerHTML = html;
     }
 
-    if (!winners.length) {
+    if(!winners.length){
       e.history.innerHTML = '<span class="note">Aún no hay resultados.</span>';
-    } else {
+    }else{
       var historyHtml = "";
-      for (var j = 0; j < winners.length; j++) {
-        historyHtml += '<span class="chip">' + (j + 1) + '. ' + escapeHtml(winners[j]) + '</span>';
+      for(var j=0;j<winners.length;j++){
+        historyHtml += '<span class="chip">'+(j+1)+'. '+escapeHtml(winners[j])+'</span>';
       }
       e.history.innerHTML = historyHtml;
     }
   }
 
-  function finishWinner(person) {
-    if (!person) return;
+  function finishWinner(person){
+    if(!person) return;
 
     e.result.classList.remove("pulse");
     e.winner.classList.remove("reveal");
@@ -197,15 +380,15 @@ textarea{min-height:105px;resize:vertical}.btn{border:0;border-radius:13px;paddi
     e.winner.classList.add("reveal");
 
     var totalBeforeRemoval = totalTickets();
-    var percent = totalBeforeRemoval ? ((person.tickets / totalBeforeRemoval) * 100).toFixed(1) : "0.0";
-    e.meta.textContent = person.tickets + " boleto" + (person.tickets === 1 ? "" : "s") + " · " + percent + "% de probabilidad";
+    var percent = totalBeforeRemoval ? ((person.tickets/totalBeforeRemoval)*100).toFixed(1) : "0.0";
+    e.meta.textContent = person.tickets+" boleto"+(person.tickets===1?"":"s")+" · "+percent+"% de probabilidad";
 
     winners.unshift(person.name);
 
-    if (e.removeWinner.checked) {
-      for (var i = 0; i < people.length; i++) {
-        if (people[i].id === person.id) {
-          people.splice(i, 1);
+    if(e.removeWinner.checked){
+      for(var i=0;i<people.length;i++){
+        if(people[i].id === person.id){
+          people.splice(i,1);
           break;
         }
       }
@@ -213,13 +396,13 @@ textarea{min-height:105px;resize:vertical}.btn{border:0;border-radius:13px;paddi
 
     drawing = false;
     e.draw.disabled = false;
-    e.draw.textContent = "Elegir al azar";
+    e.draw.textContent = "Elegir ganador";
     render();
   }
 
-  function drawWinner() {
-    if (drawing || !people.length) {
-      if (!people.length) {
+  function drawWinner(){
+    if(drawing || !people.length){
+      if(!people.length){
         e.winner.textContent = "Sin participantes";
         e.meta.textContent = "Agrega al menos una persona.";
       }
@@ -228,84 +411,84 @@ textarea{min-height:105px;resize:vertical}.btn{border:0;border-radius:13px;paddi
 
     drawing = true;
     e.draw.disabled = true;
-    e.draw.textContent = "Sorteando...";
+    e.draw.textContent = "Seleccionando...";
 
     var mode = e.mode.value;
-    var duration = (parseInt(e.seconds.value, 10) || 3) * 1000;
+    var duration = (parseInt(e.seconds.value,10) || 3) * 1000;
     var finalWinner = weightedWinner();
 
     e.result.classList.add("pulse");
 
-    if (mode === "instant") {
-      window.setTimeout(function () { finishWinner(finalWinner); }, 250);
+    if(mode === "instant"){
+      window.setTimeout(function(){ finishWinner(finalWinner); },250);
       return;
     }
 
-    if (mode === "countdown") {
-      var remaining = parseInt(e.seconds.value, 10) || 3;
+    if(mode === "countdown"){
+      var remaining = parseInt(e.seconds.value,10) || 3;
       e.winner.textContent = String(remaining);
       e.meta.textContent = "Preparando el resultado";
 
-      var countdownTimer = window.setInterval(function () {
+      var countdownTimer = window.setInterval(function(){
         remaining -= 1;
-        if (remaining <= 0) {
+        if(remaining <= 0){
           window.clearInterval(countdownTimer);
           finishWinner(finalWinner);
-        } else {
+        }else{
           e.winner.textContent = String(remaining);
         }
-      }, 1000);
+      },1000);
       return;
     }
 
-    if (mode === "mystery") {
+    if(mode === "mystery"){
       e.winner.textContent = "✦";
       e.meta.textContent = "Abriendo el resultado...";
-      window.setTimeout(function () { finishWinner(finalWinner); }, duration);
+      window.setTimeout(function(){ finishWinner(finalWinner); },duration);
       return;
     }
 
-    var shuffleTimer = window.setInterval(function () {
-      var randomIndex = Math.floor(Math.random() * people.length);
+    var shuffleTimer = window.setInterval(function(){
+      var randomIndex = Math.floor(Math.random()*people.length);
       e.winner.textContent = people[randomIndex].name;
       e.meta.textContent = "Mezclando participantes...";
-    }, 100);
+    },100);
 
-    window.setTimeout(function () {
+    window.setTimeout(function(){
       window.clearInterval(shuffleTimer);
       finishWinner(finalWinner);
-    }, duration);
+    },duration);
   }
 
-  e.add.addEventListener("click", function () {
-    addPerson(e.name.value, e.tickets.value);
+  e.add.addEventListener("click",function(){
+    addPerson(e.name.value,e.tickets.value);
     e.name.value = "";
     e.tickets.value = "1";
     e.name.focus();
   });
 
-  e.name.addEventListener("keydown", function (event) {
-    if (event.key === "Enter" || event.keyCode === 13) e.add.click();
+  e.name.addEventListener("keydown",function(event){
+    if(event.key === "Enter" || event.keyCode === 13) e.add.click();
   });
 
-  e.bulkAdd.addEventListener("click", function () {
-    var lines = e.bulk.value.replace(/\r/g, "").split("\n");
+  e.bulkAdd.addEventListener("click",function(){
+    var lines = e.bulk.value.replace(/\r/g,"").split("\n");
 
-    for (var i = 0; i < lines.length; i++) {
+    for(var i=0;i<lines.length;i++){
       var line = cleanName(lines[i]);
-      if (!line) continue;
+      if(!line) continue;
 
       var parts = line.split(",");
       var name = cleanName(parts[0]);
       var tickets = parts.length > 1 ? parts[1] : 1;
-      addPerson(name, tickets);
+      addPerson(name,tickets);
     }
 
     e.bulk.value = "";
   });
 
-  e.clear.addEventListener("click", function () {
-    if (!window.confirm("¿Vaciar participantes e historial?")) return;
+  e.clear.addEventListener("click",function(){
+    if(!window.confirm("¿Vaciar participantes e historial?")) return;
 
     people.length = 0;
     winners.length = 0;
@@ -314,37 +497,35 @@ textarea{min-height:105px;resize:vertical}.btn{border:0;border-radius:13px;paddi
     render();
   });
 
-  e.list.addEventListener("click", function (event) {
-    var target = event.target;
-    var id = target.getAttribute("data-remove-id");
-    if (!id) return;
+  e.list.addEventListener("click",function(event){
+    var id = event.target.getAttribute("data-remove-id");
+    if(!id) return;
 
-    for (var i = 0; i < people.length; i++) {
-      if (people[i].id === id) {
-        people.splice(i, 1);
+    for(var i=0;i<people.length;i++){
+      if(people[i].id === id){
+        people.splice(i,1);
         break;
       }
     }
     render();
   });
 
-  e.list.addEventListener("change", function (event) {
-    var target = event.target;
-    var id = target.getAttribute("data-ticket-id");
-    if (!id) return;
+  e.list.addEventListener("change",function(event){
+    var id = event.target.getAttribute("data-ticket-id");
+    if(!id) return;
 
-    for (var i = 0; i < people.length; i++) {
-      if (people[i].id === id) {
-        people[i].tickets = Math.max(1, parseInt(target.value, 10) || 1);
+    for(var i=0;i<people.length;i++){
+      if(people[i].id === id){
+        people[i].tickets = Math.max(1,parseInt(event.target.value,10) || 1);
         break;
       }
     }
     render();
   });
 
-  e.draw.addEventListener("click", drawWinner);
+  e.draw.addEventListener("click",drawWinner);
 
-  e.present.addEventListener("click", function () {
+  e.present.addEventListener("click",function(){
     document.body.classList.toggle("presentation");
     e.present.textContent = document.body.classList.contains("presentation")
       ? "Salir de presentación"
